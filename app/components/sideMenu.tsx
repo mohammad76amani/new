@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { SubMenu1 } from "./subMenu1";
+
 interface SideMenuProps {
   selectedButton: string;
   setSelectedButton: (button: string) => void;
+  setSelectedButtons: React.Dispatch<React.SetStateAction<any[]>>;
+  selectedButtons: any[];
 }
 
+
+
 export const SideMenu: React.FC<SideMenuProps> = ({
+  selectedButtons,
+  setSelectedButtons,
   selectedButton,
-  setSelectedButton
+  setSelectedButton,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,13 +26,13 @@ export const SideMenu: React.FC<SideMenuProps> = ({
     setIsOpen(false);
     setSelectedButton("");
   };
-
+ 
   const renderMenuContent = () => {
     switch (selectedButton) {
       case "1":
         return (
           <div>
-           <SubMenu1/>
+            <SubMenu1 setSelectedButtons={setSelectedButtons} selectedButtons={selectedButtons} />
           </div>
         );
       case "2":
