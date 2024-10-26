@@ -26,11 +26,11 @@ const BtnThumb: React.FC<ButtonProps> = ({ classes }) => {
 
   return (
     <button
-      className={`flex items-center justify-center w-[40px] h-[40px] rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`}
+      className={`flex items-center justify-center w-[50px] h-[50px] rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`}
       onClick={handleClick}
     >
       <svg
-        className="w-[40px] h-[40px] transition-transform duration-200 group-hover:scale-110"
+        className=" transition-transform duration-200 group-hover:scale-110"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >

@@ -31,8 +31,15 @@ export const ButtonsData = [
       name: "Dashed Button",
       component: BtnDashed,
       defaultProps: {
-        classes: " mx-auto",
-        text: "button"
+        classes: " ",
+        text: "button",
+        styles:{
+          width:'110px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -41,7 +48,21 @@ export const ButtonsData = [
       component: BtnGradiant,
       defaultProps: {
         classes: "py-2 px-4 text-lg",
-        text: "button"
+        text: "button",
+        styles:{
+          backgroundColor: '#00BFA6',
+          borderColor: '#fffff',
+          borderRadius: '1000px',
+          color: '#fffff',
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',
+          
+          
+          
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -50,7 +71,14 @@ export const ButtonsData = [
       component: Button1,
       defaultProps: {
         classes: "text-center rounded-lg py-2 px-5 w-fit mx-auto",
-        text: "button"
+        text: "button",
+        styles:{
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',         
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -59,7 +87,14 @@ export const ButtonsData = [
       component: BtnOutlineGradiant,
       defaultProps: {
         classes: "py-2 px-4",
-        text: "button"
+        text: "button",
+        styles:{
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',         
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -68,6 +103,12 @@ export const ButtonsData = [
       component: BtnThumb,
       defaultProps: {
         classes: "mx-auto"
+        ,styles:{
+        backgroundColor: '#00BFA6',
+        width:'100px',
+        height:'50px',
+        // Add more styles as needed
+      }
       }
     },
     {
@@ -75,7 +116,14 @@ export const ButtonsData = [
       name: "Like Button",
       component: BtnLike,
       defaultProps: {
-        classes: " mx-auto"
+        classes: " mx-auto",
+      styles:{
+        backgroundColor: '#00BFA6',
+        width:'100px',
+        height:'50px',
+ 
+        // Add more styles as needed
+      }
       }
     },
     {
@@ -84,8 +132,16 @@ export const ButtonsData = [
       component: BtnOutline,
       defaultProps: {
         classes: "mx-auto",
-        text: "button"
+        text: "button",
+        styles:{
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',         
+          // Add more styles as needed
+        }
       }
+      
     },
     {
       id: "btn9",
@@ -93,7 +149,14 @@ export const ButtonsData = [
       component: HoverBtn,
       defaultProps: {
         classes: "w-fit   mx-auto",
-        text: "button"
+        text: "button",
+        styles:{
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',         
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -102,7 +165,7 @@ export const ButtonsData = [
       component: NextBtn,
       defaultProps: {
         classes: "w-fit mx-auto",
-        text: "button"
+        text: "button",
       }
     },
     {
@@ -111,7 +174,14 @@ export const ButtonsData = [
       component: BtnShine,
       defaultProps: {
         classes: "w-fit text-lg  mx-auto   rounded-lg font-semibold",
-        text: "button"
+        text: "button",
+        styles:{
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',         
+          // Add more styles as needed
+        }
       }
     },
     {
@@ -120,7 +190,21 @@ export const ButtonsData = [
       component: SimpleBtn,
       defaultProps: {
         classes: "py-2 px-4 mx-auto  ",
-        text: "button"
+        text: "button",
+        styles:{
+          backgroundColor: '#00BFA6',
+          borderColor: '#fffff',
+          borderWidth: '2px',
+          borderStyle: 'dashed',
+          borderRadius: '1000px',
+          color: '#fffff',
+          width:'100px',
+          height:'50px',
+          fontSize:'16px',
+          fontWeight:'bold',
+
+          // Add more styles as needed
+        }
       }
     }
 ]

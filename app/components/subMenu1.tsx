@@ -25,7 +25,7 @@ interface SubMenu1Props {
        switch (activeButton) {
            case 0:
                return (
-                   <div className="flex flex-wrap w-full gap-y-2 overflow-y-auto justify-center">
+                   <div className="flex flex-wrap w-full gap-y-2 overflow-y-auto justify-center z-100">
                        {BUTTONS.map(button => (
                            <div key={button.id} className='mt-2 w-1/2 flex justify-center' onClick={() => handleButtonSelect(button)}>
                                {React.createElement(button.component as React.ComponentType<any>, { ...button.defaultProps, classes: button.defaultProps.classes || '' })}

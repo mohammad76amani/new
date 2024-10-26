@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 
 interface ButtonProps {
   classes: string;
+  styles:{
+    backgroundColor: string;
+    width: string;
+    height: string;
+    fontSize: string;
+    fontWeight: string;
+    // Add more styles as needed
+  }
 }
 
 const BtnLike: React.FC<ButtonProps> = ({ classes }) => {
@@ -29,7 +37,7 @@ const BtnLike: React.FC<ButtonProps> = ({ classes }) => {
       onClick={handleClick}
     >
       <svg
-        className="w-[30px] h-[30px] transition-transform duration-200 group-hover:scale-110"
+        className=" transition-transform duration-200 group-hover:scale-110"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 400 400.00001"
         id="svg2"
