@@ -29,7 +29,6 @@ const BtnLike: React.FC<ButtonProps> = ({ classes }) => {
       
       ;
     }
-  
 
   return (
     <button type="button"
