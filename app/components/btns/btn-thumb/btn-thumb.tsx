@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 
 interface ButtonProps {
   classes: string;
+  styles:{}
 }
 
-const BtnThumb: React.FC<ButtonProps> = ({ classes }) => {
+const BtnThumb: React.FC<ButtonProps> = ({ classes, styles }) => {
   
   const [clickCount, setClickCount] = useState(true);
 
@@ -26,7 +27,8 @@ const BtnThumb: React.FC<ButtonProps> = ({ classes }) => {
 
   return (
     <button
-      className={`flex items-center justify-center w-[50px] h-[50px] rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`}
+      className={`flex items-center justify-center  rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`}
+      style={styles}
       onClick={handleClick}
     >
       <svg

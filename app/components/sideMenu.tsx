@@ -64,14 +64,14 @@ export const SideMenu: React.FC<SideMenuProps> = ({
   return (
     isOpen && (
       <div
-        className={`side-menu ml-20 p-3 fixed top-0 bottom-0 left-0 bg-slate-100 w-[300px] ${
+        className={`side-menu ml-20 p-3 absolute top-0 bottom-0 left-0 bg-slate-100 w-[250px] z-100 ${
           isOpen ? "open" : ""
         }`}
       >
         <div className="menu-content">
           <button
             onClick={handleClose}
-            className="mb-4 px-2 py-2 bg-white hover:bg-red-100 rounded-full ml-0 transition-colors duration-300"
+            className="mb-4 px-2 py-2 bg-white hover:bg-red-100 rounded-full ml-0 transition-colors duration-300 z-100"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
           </button>

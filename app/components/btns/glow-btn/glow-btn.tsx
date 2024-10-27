@@ -1,10 +1,11 @@
 interface ButtonProps {
     text: string;
     classes:string;
+    styles:{}
   }
   
    
-  const HoverBtn: React.FC<ButtonProps> = ({ text, classes }) => {
+  const HoverBtn: React.FC<ButtonProps> = ({ text, classes ,styles}) => {
     return (
       <button 
         className={`
@@ -46,6 +47,7 @@ interface ButtonProps {
           text-lg
           ${classes}
         `}
+        style={styles}
       >
         {text}
       </button>

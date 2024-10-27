@@ -4,16 +4,13 @@ import React, { useState } from 'react';
 interface ButtonProps {
   classes: string;
   styles:{
-    backgroundColor: string;
+
     width: string;
     height: string;
-    fontSize: string;
-    fontWeight: string;
-    // Add more styles as needed
   }
 }
 
-const BtnLike: React.FC<ButtonProps> = ({ classes }) => {
+const BtnLike: React.FC<ButtonProps> = ({ classes , styles}) => {
   
   const [clickCount, setClickCount] = useState(true);
 
@@ -32,7 +29,7 @@ const BtnLike: React.FC<ButtonProps> = ({ classes }) => {
 
   return (
     <button type="button"
-      className={`flex items-center justify-center w-[50px] h-[50px] rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`}
+      className={`flex items-center justify-center rounded-[10px] cursor-pointer border-none bg-transparent relative group ${classes}`} style={styles}
       onClick={handleClick}
     >
       <svg

@@ -3,9 +3,10 @@ import React from 'react';
 interface ButtonProps {
   classes?: string;
   text: string;
+  styles:{}
 }
 
-const BtnOutlineGradiant: React.FC<ButtonProps> = ({ classes = '', text }) => {
+const BtnOutlineGradiant: React.FC<ButtonProps> = ({ classes = '', text ,styles }) => {
   return (
     <button type='button' 
       className={`
@@ -15,8 +16,8 @@ const BtnOutlineGradiant: React.FC<ButtonProps> = ({ classes = '', text }) => {
         hover:bg-gradient-to-l
         transition-all duration-700 ease-in-out
         ${classes}
-      `}
-    >
+      ` }
+      style={styles}>
       {text}
     </button>
   );

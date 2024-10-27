@@ -1,9 +1,10 @@
 interface ButtonProps {
   classes: string;
   text: string;
+  styles:{}
 }
 
-const Button1: React.FC<ButtonProps> = ({ classes, text }) => {
+const Button1: React.FC<ButtonProps> = ({ classes, text , styles}) => {
   return (
       <button 
           type='button' 
@@ -37,7 +38,7 @@ const Button1: React.FC<ButtonProps> = ({ classes, text }) => {
               mx-auto
               ${classes}
           `}
-      >
+     style={styles} >
           <span className="transition-all duration-300 group-hover:tracking-[4px] text-black">
               {text}
           </span>

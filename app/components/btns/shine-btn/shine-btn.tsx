@@ -1,13 +1,22 @@
 
 interface ButtonProps {
-    classes: string;
-    text: string;
+  classes: string;
+  text: string;
+  styles: {
+    width: string;
+    height: string;
+    fontSize: string;
+    fontWeight: string;
   }
-  
-   
-  const BtnShine: React.FC<ButtonProps> = ({ classes, text, }) => {
-    return (
-        <div  className={` text-2xl
+}
+
+
+const BtnShine: React.FC<ButtonProps> = ({ classes, text, styles }) => {
+  return (
+    <div className={` text-2xl
+      flex
+      justify-center
+      items-center
       px-4 py-2
       uppercase
       border-[3px]
@@ -28,11 +37,12 @@ interface ButtonProps {
       before:to-transparent
       before:transition-all
       before:duration-[650ms]
-      hover:before:left-full mx-auto  ${classes}`}>
-       {text}
-      </div>
-      
-    );
-  };
-  
-  export default BtnShine;
+      hover:before:left-full mx-auto  ${classes}`}
+      style={styles}>
+      {text}
+    </div>
+
+  );
+};
+
+export default BtnShine;

@@ -3,9 +3,11 @@ import Draggable, { DraggableData } from 'react-draggable'
 
 interface SubMenu1Props {
     selectedButton: any[];
+    componentStyles: {}
+    btnText: string
 }
 
-export const Screen: React.FC<SubMenu1Props> = ({ selectedButton }) => {
+export const Screen: React.FC<SubMenu1Props> = ({ selectedButton, componentStyles, btnText }) => {
     const nodeRef = useRef<HTMLDivElement>(null);
     const screenRef = useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -37,20 +39,8 @@ export const Screen: React.FC<SubMenu1Props> = ({ selectedButton }) => {
         setComponentProps(button.defaultProps);
     };
 
-    const handleBackgroundColorChange = (color: string) => {
-        if (selectedIndex !== null) {
-            setComponentsStyles(prevStyles => ({
-                ...prevStyles,
-                [selectedIndex]: {
-                    ...prevStyles[selectedIndex],
-                    backgroundColor: color
-                }
-            }));
-        }
-    };
 
     const [componentsText, setComponentsText] = useState<string[]>([]);
-    const [componentsClasses, setComponentsClasses] = useState<string[]>([]);
 
     useEffect(() => {
         setComponentsText(prevTexts => {
@@ -63,64 +53,61 @@ export const Screen: React.FC<SubMenu1Props> = ({ selectedButton }) => {
             return newTexts;
         });
 
-        setComponentsClasses(prevClasses => {
-            const newClasses = [...prevClasses];
-            selectedButton.forEach((button, index) => {
-                if (newClasses[index] === undefined) {
-                    newClasses[index] = button.defaultProps.classes || '';
-                }
-            });
-            return newClasses;
-        });
 
+
+    }, [selectedButton]);
+   // Modify the useEffect for text handling
+useEffect(() => {
+    setComponentsText(prevTexts => {
+        const newTexts = [...prevTexts];
+        selectedButton.forEach((button, index) => {
+            // Preserve existing text if it exists
+            if (!newTexts[index]) {
+                newTexts[index] = button.defaultProps.text || 'test';
+            }
+        });
+        // Only update text for selected component when btnText changes
+        if (selectedIndex !== null && btnText) {
+            newTexts[selectedIndex] = btnText;
+        }
+        return newTexts;
+    });
+}, [selectedButton, btnText, selectedIndex]);
+
+
+
+    useEffect(() => {
         setComponentsStyles(prevStyles => {
             const newStyles = { ...prevStyles };
-            selectedButton.forEach((button, index) => {
-                if (newStyles[index] === undefined) {
-                    newStyles[index] = button.defaultProps.styles || {};
-                }
-            });
+            if (selectedIndex !== null) {
+                newStyles[selectedIndex] = {
+                    ...newStyles[selectedIndex],
+                    ...componentStyles
+                };
+            }
             return newStyles;
         });
-    }, [selectedButton]);
+    }, [componentStyles, selectedIndex]);
+
+
+    const handleScreenClick = (e: React.MouseEvent) => {
+        // Check if the clicked element has the 'draggable' class
+        const target = e.target as HTMLElement;
+        if (!target.closest('.draggable')) {
+            setSelectedIndex(null);
+            setSelectedComponent(null);
+            setComponentProps(null);
+        }
+    };
 
     return (
         <>
-            {selectedIndex !== null && (
-                <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <input
-                        type="text"
-                        className="border p-2 rounded"
-                        value={componentsText[selectedIndex]}
-                        onChange={(e) => {
-                            const newTexts = [...componentsText];
-                            newTexts[selectedIndex] = e.target.value;
-                            setComponentsText(newTexts);
-                        }}
-                        placeholder="Enter text"
-                    />
-                    <input
-                        type="text"
-                        className="border p-2 rounded"
-                        value={componentsClasses[selectedIndex]}
-                        onChange={(e) => {
-                            const newClasses = [...componentsClasses];
-                            newClasses[selectedIndex] = e.target.value;
-                            setComponentsClasses(newClasses);
-                        }}
-                        placeholder="Enter classes"
-                    />
-                   <input 
-                        type="color"
-                        value={componentsStyles[selectedIndex]?.backgroundColor || '#000000'}
-                        onChange={(e) => handleBackgroundColorChange(e.target.value)}
-                        className="w-6 h-6 p-0 rounded-full"
-                    />
-                </div>
-            )}
 
-            <div ref={screenRef} className='w-2/3 min-h-[500px] ml-auto m-10 mt-32 md:mt-36 border shadow-sm relative'>
-                <div className="w-full h-full absolute" >
+            <div
+                ref={screenRef}
+                className='w-2/3 min-h-[500px] ml-auto m-10 mt-32 md:mt-36 border shadow-sm relative'
+                onClick={handleScreenClick}
+            >              <div className="w-full h-full absolute" >
                     {selectedButton.map((button, index) => (
                         <Draggable
                             key={index}
@@ -136,10 +123,15 @@ export const Screen: React.FC<SubMenu1Props> = ({ selectedButton }) => {
                             >
                                 {React.createElement(button.component as React.ComponentType<any>, {
                                     ...button.defaultProps,
-                                    text: componentsText[index] || '',
-                                    classes: `${componentsClasses[index] || ''} ${selectedIndex === index ? 'border-2 border-blue-500' : ''} draggable`,
-                                    styles: componentsStyles[index] || {}
+                                    text: selectedIndex === index ? btnText : componentsText[index] || 'test',
+                                    classes: `${selectedIndex === index ? 'border-2 border-blue-500' : ''} draggable`,
+                                    styles: button.defaultProps.classes?.includes('changable')
+                                        ? componentsStyles[index]
+                                        : {}
                                 })}
+
+
+
                             </div>
                         </Draggable>
                     ))}

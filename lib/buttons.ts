@@ -32,7 +32,6 @@ export const ButtonsData = [
       component: BtnDashed,
       defaultProps: {
         classes: " ",
-        text: "button",
         styles:{
           width:'110px',
           height:'50px',
@@ -48,19 +47,12 @@ export const ButtonsData = [
       component: BtnGradiant,
       defaultProps: {
         classes: "py-2 px-4 text-lg",
-        text: "button",
-        styles:{
-          backgroundColor: '#00BFA6',
-          borderColor: '#fffff',
-          borderRadius: '1000px',
-          color: '#fffff',
-          width:'100px',
+        
+        styles:{  
+          width:'120px',
           height:'50px',
           fontSize:'16px',
           fontWeight:'bold',
-          
-          
-          
           // Add more styles as needed
         }
       }
@@ -71,7 +63,7 @@ export const ButtonsData = [
       component: Button1,
       defaultProps: {
         classes: "text-center rounded-lg py-2 px-5 w-fit mx-auto",
-        text: "button",
+        
         styles:{
           width:'100px',
           height:'50px',
@@ -86,13 +78,13 @@ export const ButtonsData = [
       name: "Outline Gradient Button",
       component: BtnOutlineGradiant,
       defaultProps: {
-        classes: "py-2 px-4",
-        text: "button",
-        styles:{
-          width:'100px',
+        classes: "",
+        
+        styles:{  
+          width:'120px',
           height:'50px',
           fontSize:'16px',
-          fontWeight:'bold',         
+          fontWeight:'bold',
           // Add more styles as needed
         }
       }
@@ -104,8 +96,7 @@ export const ButtonsData = [
       defaultProps: {
         classes: "mx-auto"
         ,styles:{
-        backgroundColor: '#00BFA6',
-        width:'100px',
+        width:'50px',
         height:'50px',
         // Add more styles as needed
       }
@@ -118,10 +109,8 @@ export const ButtonsData = [
       defaultProps: {
         classes: " mx-auto",
       styles:{
-        backgroundColor: '#00BFA6',
-        width:'100px',
+        width:'50px',
         height:'50px',
- 
         // Add more styles as needed
       }
       }
@@ -132,7 +121,6 @@ export const ButtonsData = [
       component: BtnOutline,
       defaultProps: {
         classes: "mx-auto",
-        text: "button",
         styles:{
           width:'100px',
           height:'50px',
@@ -149,7 +137,6 @@ export const ButtonsData = [
       component: HoverBtn,
       defaultProps: {
         classes: "w-fit   mx-auto",
-        text: "button",
         styles:{
           width:'100px',
           height:'50px',
@@ -164,9 +151,15 @@ export const ButtonsData = [
       name: "Next Button",
       component: NextBtn,
       defaultProps: {
-        classes: "w-fit mx-auto",
-        text: "button",
+        classes: "", styles:{
+        width:'100px',
+        height:'50px',
+        fontSize:'16px',
+        fontWeight:'bold',         
+        // Add more styles as needed
       }
+      },
+     
     },
     {
       id: "btn11",
@@ -174,7 +167,6 @@ export const ButtonsData = [
       component: BtnShine,
       defaultProps: {
         classes: "w-fit text-lg  mx-auto   rounded-lg font-semibold",
-        text: "button",
         styles:{
           width:'100px',
           height:'50px',
@@ -189,20 +181,16 @@ export const ButtonsData = [
       name: "Simple Button",
       component: SimpleBtn,
       defaultProps: {
-        classes: "py-2 px-4 mx-auto  ",
-        text: "button",
+        classes: "py-2 px-4 mx-auto items-center justify-center changable",
         styles:{
-          backgroundColor: '#00BFA6',
-          borderColor: '#fffff',
-          borderWidth: '2px',
-          borderStyle: 'dashed',
-          borderRadius: '1000px',
-          color: '#fffff',
+          backgroundColor: 'rgb(30,169,46)',    
+          borderRadius: '0px',
+          color: '#00000',
           width:'100px',
           height:'50px',
           fontSize:'16px',
           fontWeight:'bold',
-
+        
           // Add more styles as needed
         }
       }
