@@ -1,5 +1,8 @@
 import Link from "next/link";
 import React from "react";
+interface NavbarProps {
+  styles?: React.CSSProperties;
+}
 const navMenu = [
     {
       label: "First Link",
@@ -19,7 +22,7 @@ const navMenu = [
     },
 ]
 
-const NavbarFour = () => {
+const NavbarFour = (styles:NavbarProps) => {
   return (
     <div className=" flex sm:flex-row flex-col p-5 items-center justify-between bg-gray-600">
       <Link href='#' className="flex font-bold items-center text-white">

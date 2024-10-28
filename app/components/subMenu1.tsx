@@ -5,20 +5,28 @@ import {NavbarsData} from '@/lib/navBars'
 interface SubMenu1Props {
     selectedButtons: any[];
     setSelectedButtons: React.Dispatch<React.SetStateAction<any[]>>;
+    setSelectedNav:React.Dispatch<React.SetStateAction<string[]>>
+    selectedNav:string[]
   }
   
-  export const SubMenu1: React.FC<SubMenu1Props> = ({ selectedButtons, setSelectedButtons }) => {
+  export const SubMenu1: React.FC<SubMenu1Props> = ({ selectedButtons, setSelectedButtons , setSelectedNav, selectedNav}) => {
   
    const [activeButton, setActiveButton] = useState<number>(0);
-   
+   const [activeNav, setActiveNav] = useState<number>(0);
 
    const handleButtonClick = (buttonIndex: number) => {
        setActiveButton(buttonIndex);
    };
 
-   const handleButtonSelect = (button: any) => {
-       setSelectedButtons([...selectedButtons, button]);
+   const handleNavSelect = (nav: any) => {
+       setSelectedNav([nav ]);
    };
+
+
+
+const handleButtonSelect = (button: any) => {
+    setSelectedButtons([...selectedButtons, button]);
+};
 
    const buttons = ['templates', 'layoute', 'styles'];
 
@@ -27,17 +35,20 @@ interface SubMenu1Props {
            case 0:
                return (
                 <>
-                   <div className="flex  w-full gap-y-2 gap-x-2 overflow-y-auto   p-1 m-1">
+                   <div className="flex  w-full gap-y-2 gap-x-2  overflow-auto  p-1 m-1">
                        {BUTTONS.map(button => (
                            <div key={button.id} className='mt-2 w-[48%] flex justify-center' onClick={() => handleButtonSelect(button)}>
                                {React.createElement(button.component as React.ComponentType<any>, { ...button.defaultProps, classes: button.defaultProps.classes || '' })}
                            </div>
                        ))}
                    </div>
-                   <div className="flex flex-col  gap-y-2  overflow-y-auto   p-1 m-1">
-                       {NavbarsData.map(button => (
-                           <div key={button.id} className='mt-2 w-[48%] flex w-fit' onClick={() => handleButtonSelect(button)}>
-                               {React.createElement(button.component as React.ComponentType<any>, { ...button.defaultProps, classes: button.defaultProps.classes || '' })}
+                   <br />
+                    <span className='p-2 bg-green-200 rounded-full m-2 mt-5'>navBars:  </span>
+
+                   <div className="flex flex-col w-fit gap-y-2    p-1 m-1">
+                       {NavbarsData.map(nav => (
+                           <div key={nav.id} className='mt-2 w-[48%] flex w-fit' onClick={() => handleNavSelect(nav)}>
+                               {React.createElement(nav.component as React.ComponentType<any>, { ...nav.defaultProps, classes: nav.defaultProps.classes || '' })}
                            </div>
                        ))}
                    </div>
@@ -47,13 +58,7 @@ interface SubMenu1Props {
                return (
                    <div>
                        <h2>Selected Buttons:</h2>
-                       <div className="flex flex-wrap gap-y-2 gap-x-2 overflow-y-auto justify-center z-100">
-                           {selectedButtons.map((button, index) => (
-                               <div key={index}>
-                                   {React.createElement(button.component as React.ComponentType<any>, { ...button.defaultProps, classes: button.defaultProps.classes || '' })}
-                               </div>
-                           ))}
-                       </div>
+                     
                    </div>
                );
            case 2:
@@ -83,8 +88,9 @@ interface SubMenu1Props {
                    </button>
                ))}
            </div>
-           butons:
+           
            <div className='bg-white h-[75vh] overflow-auto'>
+             <span className='p-2 bg-green-200 rounded-full m-2 mt-5'>butons:</span>
              {renderActiveButtonContent()}
            </div>
        </div>

@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+interface NavbarProps {
+  styles?: React.CSSProperties;
+}
 const navbarLinks = [
   { label: "Home", href: "#" },
   { label: "About", href: "#" },
@@ -11,11 +14,11 @@ const navbarLinks2 = [
   { label: "About", href: "#" },
   { label: "Contact", href: "#" },
 ];
-const NavbarFive = () => {
+const NavbarFive = ( styles:NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="relative bg-gray-800 p-4">
+    <nav className="relative bg-gray-800 p-4" style={styles.styles}>
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-2xl font-bold">LOGO</div>
         <button

@@ -2,8 +2,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-
-const NavbarTwo = () => {
+interface NavbarProps {
+  styles?: React.CSSProperties;
+}
+const NavbarTwo = (styles:NavbarProps) => {
   const [navTwo, setNavTwo] = useState(false);
 
   const handleNavTwo = () => {
@@ -19,7 +21,7 @@ const NavbarTwo = () => {
     // { id: 6, text: "Login" },
   ];
   return (
-    <nav className="bg-yellow-400 p-4 mx-auto">
+    <nav className="bg-yellow-400 p-4 mx-auto" style={styles.styles}>
       <div className="bg-transparent flex justify-between items-center h-14 max-w-[1240px] mx-auto px-4 text-white">
         <div className="text-white text-lg font-bold hover:text-slate-500">
           Digital

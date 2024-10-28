@@ -120,7 +120,7 @@ export const ButtonsData = [
       name: "Outline Button",
       component: BtnOutline,
       defaultProps: {
-        classes: "mx-auto",
+        classes: "mx-auto py-2 px-4 ",
         styles:{
           width:'100px',
           height:'50px',

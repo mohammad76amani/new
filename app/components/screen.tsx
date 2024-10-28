@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Draggable, { DraggableData } from 'react-draggable'
 
+interface NavItem {
+    component: React.ComponentType<any>;
+    defaultProps: any;
+}
+
 interface SubMenu1Props {
     selectedButton: any[];
     componentStyles: {}
     btnText: string
+    selectedNav: NavItem[]
+    setSelectedNav: React.Dispatch<React.SetStateAction<NavItem[]>>
 }
 
-export const Screen: React.FC<SubMenu1Props> = ({ selectedButton, componentStyles, btnText }) => {
+export const Screen: React.FC<SubMenu1Props> = ({ selectedButton, componentStyles, btnText, selectedNav }) => {
     const nodeRef = useRef<HTMLDivElement>(null);
     const screenRef = useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [selectedComponent, setSelectedComponent] = useState<any>(null);
-    const [componentProps, setComponentProps] = useState<any>(null);
     const [componentsStyles, setComponentsStyles] = useState<Record<number, React.CSSProperties>>({});
 
     const handleDrag = (_e: React.DragEvent, data: DraggableData) => {
@@ -33,10 +39,12 @@ export const Screen: React.FC<SubMenu1Props> = ({ selectedButton, componentStyle
         }
     };
 
-    const handleComponentClick = (index: number, button: any) => {
+    const handleComponentClick = (index: number, button: any, nav: any) => {
         setSelectedIndex(index);
         setSelectedComponent(button);
-        setComponentProps(button.defaultProps);
+        setSelectedComponent(nav);
+        console.log(selectedComponent);
+
     };
 
 
@@ -56,23 +64,23 @@ export const Screen: React.FC<SubMenu1Props> = ({ selectedButton, componentStyle
 
 
     }, [selectedButton]);
-   // Modify the useEffect for text handling
-useEffect(() => {
-    setComponentsText(prevTexts => {
-        const newTexts = [...prevTexts];
-        selectedButton.forEach((button, index) => {
-            // Preserve existing text if it exists
-            if (!newTexts[index]) {
-                newTexts[index] = button.defaultProps.text || 'test';
+    // Modify the useEffect for text handling
+    useEffect(() => {
+        setComponentsText(prevTexts => {
+            const newTexts = [...prevTexts];
+            selectedButton.forEach((button, index) => {
+                // Preserve existing text if it exists
+                if (!newTexts[index]) {
+                    newTexts[index] = button.defaultProps.text || 'test';
+                }
+            });
+            // Only update text for selected component when btnText changes
+            if (selectedIndex !== null && btnText) {
+                newTexts[selectedIndex] = btnText;
             }
+            return newTexts;
         });
-        // Only update text for selected component when btnText changes
-        if (selectedIndex !== null && btnText) {
-            newTexts[selectedIndex] = btnText;
-        }
-        return newTexts;
-    });
-}, [selectedButton, btnText, selectedIndex]);
+    }, [selectedButton, btnText, selectedIndex]);
 
 
 
@@ -80,6 +88,7 @@ useEffect(() => {
         setComponentsStyles(prevStyles => {
             const newStyles = { ...prevStyles };
             if (selectedIndex !== null) {
+                // Apply styles regardless of whether it's a button or navbar
                 newStyles[selectedIndex] = {
                     ...newStyles[selectedIndex],
                     ...componentStyles
@@ -90,36 +99,39 @@ useEffect(() => {
     }, [componentStyles, selectedIndex]);
 
 
+
     const handleScreenClick = (e: React.MouseEvent) => {
         // Check if the clicked element has the 'draggable' class
         const target = e.target as HTMLElement;
         if (!target.closest('.draggable')) {
             setSelectedIndex(null);
             setSelectedComponent(null);
-            setComponentProps(null);
         }
     };
 
     return (
         <>
 
+
             <div
                 ref={screenRef}
                 className='w-2/3 min-h-[500px] ml-auto m-10 mt-32 md:mt-36 border shadow-sm relative'
                 onClick={handleScreenClick}
-            >              <div className="w-full h-full absolute" >
+            >
+                <div className="w-full h-full absolute" >
+                    {/* Render selected buttons - keep these draggable */}
                     {selectedButton.map((button, index) => (
                         <Draggable
-                            key={index}
+                            key={`button-${index}`}
                             nodeRef={nodeRef}
                             bounds="parent"
-                            defaultPosition={{ x: 50 + (index * 20), y: 50 + (index * 20) }}
+                            defaultPosition={{ x: 100 + (index * 20), y: 110 + (index * 20) }}
                             onDrag={(e, data) => handleDrag(e as unknown as React.DragEvent, data)}
                         >
                             <div
                                 ref={nodeRef}
                                 className="absolute w-fit cursor-move"
-                                onClick={() => handleComponentClick(index, button)}
+                                onClick={() => handleComponentClick(index, button, 'button')}
                             >
                                 {React.createElement(button.component as React.ComponentType<any>, {
                                     ...button.defaultProps,
@@ -129,14 +141,39 @@ useEffect(() => {
                                         ? componentsStyles[index]
                                         : {}
                                 })}
-
-
-
                             </div>
                         </Draggable>
                     ))}
+
+                    {/* Render selected nav items - static positioning */}
+                    {selectedNav.map((nav, index) => {
+                        const navIndex = selectedButton.length + index;
+                        return (
+                            <div
+                                key={`nav-${index}`}
+                                className="w-full"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleComponentClick(navIndex, nav ,'nav');
+                                }}
+                            >
+                                {React.createElement(nav.component, {
+                                    ...nav.defaultProps,
+                                    classes: `${selectedIndex === navIndex ? 'border-2 border-blue-500' : ''} changable`,
+                                    styles: 
+                                         componentsStyles[navIndex]
+                                        
+                                })}
+                            </div>
+                        );
+                    })}
+
+
+
                 </div>
             </div>
+
+
         </>
     )
 }

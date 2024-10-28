@@ -21,11 +21,13 @@ const iconList = [
   { icon: <FaHeart /> },
   { icon: <FaShoppingCart /> },
 ];
-
+interface NavbarProps {
+  styles?: React.CSSProperties;
+}
 const bgColor = "bg-gray-800";
 const modalColor = "bg-gray-900";
 
-const NavbarThree = () => {
+const NavbarThree = (styles:NavbarProps) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
   const [showModal, setShowModal] = useState(false);
 
@@ -53,7 +55,7 @@ const NavbarThree = () => {
       {!isMobile ? (
         // Laptop Navbar Code Here
         <nav className={` ${bgColor}`}>
-          <div className="flex justify-between mx-auto items-center py-4 px-24">
+          <div className="flex justify-between mx-auto items-center py-4 px-24" style={styles.styles}>
             <div className="text-white font-bold text-xl">Logo</div>
             <ul className="flex gap-8 md:gap-16 items-center justify-center text-center cursor-pointer">
               {navLinks.map((link, index) => (

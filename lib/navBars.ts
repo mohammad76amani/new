@@ -4,8 +4,6 @@ import NavbarThree from "../app/components/navBars/navbar-three/page";
 import NavbarFour from "../app/components/navBars/navbar-four/page";
 import NavbarFive from "../app/components/navBars/navbar-five/page";
 import NavbarSix from "../app/components/navBars/navbar-six/page";
-import NavbarSeven from "../app/components/navBars/navbar-seven/page";
-import NavbarEight from "../app/components/navBars/navbar-eight/page";
 
 // Export individual navbar components
 export const NavbarComponents = {
@@ -15,8 +13,6 @@ export const NavbarComponents = {
     NavbarFour,
     NavbarFive,
     NavbarSix,
-    NavbarSeven,
-    NavbarEight
 }
 
 // Export navbar data with default props
@@ -93,28 +89,5 @@ export const NavbarsData = [
             }
         }
     },
-    // {
-    //     id: "nav7",
-    //     name: "Navbar Seven",
-    //     component: NavbarSeven,
-    //     defaultProps: {
-    //         classes: "",
-    //         styles: {
-    //             width: '100%',
-    //             // Add more default styles as needed
-    //         }
-    //     }
-    // },
-    // {
-    //     id: "nav8",
-    //     name: "Navbar Eight",
-    //     component: NavbarEight,
-    //     defaultProps: {
-    //         classes: "",
-    //         styles: {
-    //             width: '100%',
-    //             // Add more default styles as needed
-    //         }
-    //     }
-    // }
+    
 ]

@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-
-const NavbarSix: React.FC = () => {
+interface NavbarProps {
+  styles?: React.CSSProperties;
+}
+const NavbarSix: React.FC<NavbarProps> = ({ styles }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {

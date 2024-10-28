@@ -18,13 +18,16 @@ export const StyleMenu: React.FC<StyleMenuProps> = ({ setComponentStyles, setBtn
     });
 
     const handleStyleChange = (property: string, value: string | number) => {
+        // Validate numeric values before updating
+        if ((property === 'width' || property === 'height') && isNaN(value as number)) {
+            return; // Don't update if value is NaN
+        }
+        
         const newStyles = { ...styles, [property]: value };
         setStyles(newStyles);
         setComponentStyles(newStyles);
-
-
     };
-
+    
     return (
         <div className="fixed top-4 left-1/2 w-fit transform  lg:rounded-2xl bg-white/90 backdrop-blur-sm p-4  shadow-lg border border-gray-200 gap-4 items-center  md:rounded-lg ">
             <div className='flex gap-x-1'>

@@ -2,8 +2,13 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Link from "next/link";
-
-const NavbarOne = () => {
+  // State to manage the navbar's visibility
+  interface NavbarProps {
+    styles?: React.CSSProperties;
+  }
+  
+  const NavbarOne: React.FC<NavbarProps> = ({ styles }) => {
+  
   // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
 
@@ -11,6 +16,7 @@ const NavbarOne = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+
 
   // Array containing navigation items
   const navItems = [
@@ -23,7 +29,7 @@ const NavbarOne = () => {
 
   return (
 // Update the main container div className to:
-<div className="bg-black flex justify-between items-center h-20 w-full mx-auto px-4 text-white">
+<div className="bg-black flex justify-between items-center h-20 w-full mx-auto px-4 text-white" style={styles}>
       {/* Logo */}
       <h1 className="w-full text-3xl font-bold text-[#00df9a]">REACT</h1>
 

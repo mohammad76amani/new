@@ -6,6 +6,8 @@ interface SideMenuProps {
   setSelectedButton: (button: string) => void;
   setSelectedButtons: React.Dispatch<React.SetStateAction<any[]>>;
   selectedButtons: any[];
+  setSelectedNav:React.Dispatch<React.SetStateAction<string[]>>
+  selectedNav:string[]
 }
 
 
@@ -15,6 +17,8 @@ export const SideMenu: React.FC<SideMenuProps> = ({
   setSelectedButtons,
   selectedButton,
   setSelectedButton,
+  setSelectedNav,
+  selectedNav
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +36,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({
       case "1":
         return (
           <div>
-            <SubMenu1 setSelectedButtons={setSelectedButtons} selectedButtons={selectedButtons} />
+            <SubMenu1 setSelectedButtons={setSelectedButtons} selectedButtons={selectedButtons} setSelectedNav={setSelectedNav} selectedNav={selectedNav}/>
           </div>
         );
       case "2":
